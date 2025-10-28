@@ -4,3 +4,33 @@
 body{
     font-family: fantasy;
 }
+
+.container{
+    background-color: #15304d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .title-section{
+    text-align: center;
+    color: wheat;
+}
+
+.container .cards-section{
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.container .cards-section .card img{
+    width: 21.5vh;
+    height: 50%;
+    border: 2px solid #8d7039;
+    border-radius: 10%;
+    
+}
