@@ -7,7 +7,7 @@ cards.forEach(card =>{
     card.style.order = Math.floor(Math.random() *100);
 })
 
-
+let pointts = 0;
 let firstCard = null;
 let secondCard = null;
 
@@ -32,7 +32,9 @@ cards.forEach(card => {
         // keep flipped
         firstCard = null;
         secondCard = null;
-        
+        pointts++;
+
+        score.innerText = pointts;
       } 
       else {
         
