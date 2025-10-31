@@ -79,6 +79,7 @@ body {
     border: 1px solid #8cafff;
     border-radius: 8px;
     margin-top: 10px;
+     user-select: none;
 }
 
 .input {

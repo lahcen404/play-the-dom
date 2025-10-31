@@ -4,20 +4,17 @@ const startBtn = document.getElementById("start");
 const timer = document.querySelector("#timer");
 const gotScore = document.querySelector(".got");
 const totalScore = document.querySelector(".total");
+const finishDiv = document.querySelector(".finish");
 
-
- let score = 0;
-  let totalTyped = 0;
-  let correctTyped = 0;
-  let timeLeft = 10;
-
-
+let score = 0;
+let timeLeft = 15;
+let index = -1;
+let gameActive = false;
+let timerStarted = false;
+let countDown;
 
 let text = "ila ktebty hadchi raak nadi yalah seerbi kteeeeb let s gooooo";
-// let letters = text.split("");
-  totalScore.innerText = text.length;
-
-console.log(text);
+totalScore.innerText = text.length;
 
 function displayText() {
   wordDiv.innerHTML = "";
@@ -26,35 +23,34 @@ function displayText() {
     span.textContent = text[i];
     wordDiv.appendChild(span);
   }
-
-  console.log(wordDiv.innerHTML); // heere spans of every letter split
-  //   console.log(text); // all lettters
-
   input.value = "";
   input.focus();
 }
 
 displayText();
 
-let index = -1;
-
 window.addEventListener("keydown", function (e) {
+  if (!gameActive) return;
+
+  // start timer first keeey press
+  if (!timerStarted && e.key.length === 1) {
+    startTimer();
+    timerStarted = true;
+  }
+
   let spans = wordDiv.querySelectorAll("span");
 
   if (e.key === "Backspace") {
     if (index >= 0) {
       spans[index].style.color = "#8cafff";
       index--;
-      score--;
-    gotScore.innerText = score;
-
+      if (score > 0) score--;
+      gotScore.innerText = score;
     }
     return;
   }
 
   index++;
-
-
   if (index >= text.length) return;
 
   if (text[index] === e.key) {
@@ -65,39 +61,46 @@ window.addEventListener("keydown", function (e) {
     spans[index].style.color = "red";
   }
 
-  let userText = input.value;
-
-  if (userText === text) {
-    wordDiv.innerHTML = "<h2>Naaady !! 🎉</h2>";
+  if (index === text.length - 1) {
+    showResults();
   }
 });
 
-
-
-startBtn.addEventListener("click", function () {
- 
-    score=0;
-    gotScore.innerText = score;
-
-  const countDownInterval = setInterval (()=>{
+function startTimer() {
+  countDown = setInterval(() => {
     timeLeft--;
     timer.innerText = timeLeft;
-    
-    if(timeLeft <= 0){
-        clearInterval(countDownInterval);
+    if (timeLeft <= 0) {
+      showResults();
     }
+  }, 1000);
+}
 
+function showResults() {
+  gameActive = false;
+  clearInterval(countDown);
 
-},1000)
+  let timeUsed = 15 - timeLeft;
+  let timeUsedMinutes = timeUsed / 60;
+  let accuracy = (score / text.length) * 100;
+  let wpm = (text.length / 5) / timeUsedMinutes;
 
+  finishDiv.innerHTML = `
+    <p>Time: ${timeUsed}s</p>
+    <p>Accuracy: ${accuracy.toFixed(1)}%</p>
+    <p>WPM: ${wpm.toFixed(1)}</p>
+  `;
+}
+
+startBtn.addEventListener("click", function () {
+  score = 0;
   index = -1;
+  timeLeft = 15;
+  gameActive = true;
+  timerStarted = false;
+  gotScore.innerText = score;
+  finishDiv.innerHTML = "";
+  timer.innerText = timeLeft;
   displayText();
-
-
+  clearInterval(countDown);
 });
-
-let wpm = (text.length / 5) /1
-
-let accurancy = (score / text.length) *100
-
-console.log("acc = ", acc)
