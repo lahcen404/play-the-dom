@@ -25,6 +25,40 @@ function displayText() {
 
 displayText();
 
+let index=-1;
+
+window.addEventListener("keydown", function (e) {
+  let spans = wordDiv.querySelectorAll("span");
+
+ 
+  if (e.key === "Backspace") {
+    if (index >= 0) {
+      spans[index].style.color = "#8cafff"; 
+      index--; 
+    }
+    return; 
+  }
+
+  
+  index++;
+
+  
+  if (index >= text.length) return;
+
+  if (text[index] === e.key) {
+    spans[index].style.color = "green";
+  } else {
+    spans[index].style.color = "red";
+  }
+
+  let userText = input.value;
+
+  if (userText === text) {
+    wordDiv.innerHTML = "<h2>Naaady !! 🎉</h2>";
+  }
+});
+
+
 // let list = [1,2,3,54,5];
 
 // console.log(list[4]);
