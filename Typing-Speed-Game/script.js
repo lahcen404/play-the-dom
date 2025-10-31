@@ -3,6 +3,8 @@ const input = document.querySelector(".input");
 const startBtn = document.getElementById("start");
 
 
+
+
 let text = "ila ktebty hadchi raak nadi yalah seerbi kteeeeb let s gooooo";
 // let letters = text.split("");
 console.log(text);
@@ -58,7 +60,10 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-
+startBtn.addEventListener("click",function(){
+    index =-1;
+    displayText();
+})
 // let list = [1,2,3,54,5];
 
 // console.log(list[4]);
