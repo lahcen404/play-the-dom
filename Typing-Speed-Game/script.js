@@ -3,13 +3,20 @@ const input = document.querySelector(".input");
 const startBtn = document.getElementById("start");
 const timer = document.querySelector("#timer");
 const gotScore = document.querySelector(".got");
+const totalScore = document.querySelector(".total");
+
+
  let score = 0;
   let totalTyped = 0;
   let correctTyped = 0;
   let timeLeft = 10;
 
+
+
 let text = "ila ktebty hadchi raak nadi yalah seerbi kteeeeb let s gooooo";
 // let letters = text.split("");
+  totalScore.innerText = text.length;
+
 console.log(text);
 
 function displayText() {
@@ -38,6 +45,9 @@ window.addEventListener("keydown", function (e) {
     if (index >= 0) {
       spans[index].style.color = "#8cafff";
       index--;
+      score--;
+    gotScore.innerText = score;
+
     }
     return;
   }
@@ -66,6 +76,8 @@ window.addEventListener("keydown", function (e) {
 
 startBtn.addEventListener("click", function () {
  
+    score=0;
+    gotScore.innerText = score;
 
   const countDownInterval = setInterval (()=>{
     timeLeft--;
@@ -83,3 +95,9 @@ startBtn.addEventListener("click", function () {
 
 
 });
+
+let wpm = (text.length / 5) /1
+
+let accurancy = (score / text.length) *100
+
+console.log("acc = ", acc)

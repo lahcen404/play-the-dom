@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     background-image: url('./imgs/unnamed.jpg');
-    background-size: cover;
+
     background-position: center;
     background-attachment: fixed;
     color: #e0e0e0;
@@ -53,7 +53,6 @@ body {
 
 #start {
     display: block;
-    width: fit-content;
     padding: 12px 28px;
     margin: 20px auto;
     background-color: #5cb85c;
@@ -63,12 +62,11 @@ body {
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: background-color 0.2s ;
 }
 
 #start:hover {
-    background-color: #4cae4c;
-    transform: translateY(-2px);
+    background-color: #3f963f;
 }
 
 .the-word {
@@ -93,13 +91,9 @@ body {
     color: #e0e0e0;
     font-size: 1.4rem;
     text-align: center;
-    outline: none;
     transition: border-color 0.2s ease;
 }
 
-.input:focus {
-    border-color: #5cb85c;
-}
 
 .input::placeholder {
     color: rgba(255, 255, 255, 0.5);
